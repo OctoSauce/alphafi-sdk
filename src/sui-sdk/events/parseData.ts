@@ -70,7 +70,7 @@ export function parseInvestmentsfromDepositEvents(
 }
 
 export function parseWithdrawsFromWithdrawEvents(
-  params: ParseWithdrawsFromWithdrawEventsParams
+  params: ParseWithdrawsFromWithdrawEventsParams,
 ): UsersWithdrawsFromPools {
   let usersWithdrawsFromPools: UsersWithdrawsFromPools = {};
 
@@ -330,7 +330,9 @@ export function parseWithdrawsFromLCEvents(params: {
           tokens: newWithdraw,
         } as SingleTokenAmounts;
       } else {
-        usersWithdrawsFromPools[owner]["ALPHA"] = { tokens: withdraw.toFixed(5).toString() }
+        usersWithdrawsFromPools[owner]["ALPHA"] = {
+          tokens: withdraw.toFixed(5).toString(),
+        };
       }
     } else if (isCetusLCEventNode(node)) {
       // TODO add investment functionality for cetus pools
