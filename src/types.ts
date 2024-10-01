@@ -1,9 +1,11 @@
 import {
   CoinName,
-  DoubleAssetPoolNames,
+  DoubleAssetPoolName,
   PoolName,
-  SingleAssetPoolNames,
+  SingleAssetPoolName,
   AlphaFiVaultBalance,
+  DoubleAssetPoolAmounts,
+  SingleTokenAmounts,
 } from "./common/types";
 
 export type GetUserTokensFromTransactionsParams = {
@@ -172,13 +174,13 @@ export type UserPoolTokenHoldings =
 
 export type SingleAssetTokenHoldings = {
   user: string;
-  poolName: SingleAssetPoolNames;
+  poolName: SingleAssetPoolName;
   tokens: string;
 };
 
 export type DoubleAssetTokenHoldings = {
   user: string;
-  poolName: DoubleAssetPoolNames;
+  poolName: DoubleAssetPoolName;
   tokenAmountA: string;
   tokenAmountB: string;
 };
@@ -229,4 +231,40 @@ export type GetVaultBalanceForActiveUsersParams = {
   poolNames?: PoolName[];
   startTime?: number;
   endTime?: number;
+};
+
+// export type GetPoolEarningsParams = {
+//   owners?: string | string[];
+//   poolNames?: PoolName | PoolName[];
+//   startTime?: number;
+//   endTime?: number;
+// };
+
+// export type GetPoolEarningsResponse = {
+//   [poolName in PoolName]?:
+//     | GetCetusPoolEarningsResponse
+//     | GetAlphaPoolEarningsResponse
+//     | GetNaviPoolEarningsResponse;
+// };
+
+export type GetUserAlphaMiningEarningsParams = {
+  owner: string;
+};
+
+export type GetUserAlphaMiningEarningsResponse = {
+  alphaPoolMiningEarnings: SingleTokenAmounts;
+  otherPoolAlphaMiningEarnings: {
+    [key in Exclude<PoolName, "ALPHA"> | "TOTAL"]: SingleTokenAmounts;
+  };
+};
+
+export type GetCetusPoolEarningsParams = {
+  owners?: string | string[];
+  poolName?: DoubleAssetPoolName;
+  startTime?: number;
+  endTime?: number;
+};
+
+export type GetCetusPoolEarningsResponse = {
+  [owner: string]: DoubleAssetPoolAmounts;
 };

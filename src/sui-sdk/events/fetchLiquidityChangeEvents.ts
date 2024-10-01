@@ -7,8 +7,7 @@ import {
 
 export async function fetchLiquidityChangeEvents(
   params: FetchLiquidityChangeEventsParams,
-) {
-  // : Promise<LiquidityChangeEventNode[]>
+): Promise<LiquidityChangeEventNode[]> {
   const eventTypesSet = new Set<string>();
 
   if (params.poolNames) {
@@ -19,7 +18,7 @@ export async function fetchLiquidityChangeEvents(
       }
     });
   } else {
-    // Iterate over all the values in poolInfo and add each autoCompoundingEventType to the Set
+    // Iterate over all the values in poolInfo and add each liquidityChangeEvent to the Set
     Object.values(poolInfo).forEach((info) => {
       const eventType = info.liquidityChangeEventType;
       if (eventType !== undefined && eventType !== null && eventType !== "") {
