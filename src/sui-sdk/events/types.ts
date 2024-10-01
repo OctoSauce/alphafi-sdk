@@ -1,8 +1,12 @@
 import { PoolName } from "../../common/types";
 
-interface CommonEventAttributes {
+export interface CommonEventAttributes {
   type: string;
   timestamp: number;
+  txModule: string;
+  txDigest: string;
+  eventSeq: string;
+  sender: string;
 }
 
 export interface CetusAutoCompoundingEvent {
@@ -84,6 +88,18 @@ export interface AlphaLiquidityChangeEvent {
   x_token_supply: string;
 }
 
+export interface DepositEvent {
+  amount_deposited: string;
+  coin_type: { name: string };
+  sender: string;
+}
+
+export interface WithdrawEvent {
+  amount_to_withdraw: string;
+  coin_type: { name: string };
+  sender: string;
+}
+
 export type AutoCompoundingEventNode =
   | (CetusAutoCompoundingEvent & CommonEventAttributes)
   | (NaviAutoCompoundingEvent & CommonEventAttributes)
@@ -97,11 +113,16 @@ export type LiquidityChangeEventNode =
   | (NaviLiquidityChangeEvent & CommonEventAttributes)
   | (AlphaLiquidityChangeEvent & CommonEventAttributes);
 
+export type DepositEventNode = DepositEvent & CommonEventAttributes;
+
+export type WithdrawEventNode = WithdrawEvent & CommonEventAttributes;
+
 export type EventNode =
   | AutoCompoundingEventNode
   | RebalanceEventNode
-  | LiquidityChangeEventNode;
-// export type EventNode = AutoCompoundingEventNode | RebalanceEventNode;
+  | LiquidityChangeEventNode
+  | DepositEventNode
+  | WithdrawEventNode;
 
 export type FetchAutoCompoundingEventsParams = {
   startTime?: number;
@@ -118,3 +139,45 @@ export type FetchEventsParams = {
   startTime?: number;
   endTime?: number;
 };
+
+export type FetchDepositEventsParams = {
+  startTime: number;
+  endTime: number;
+  poolNames?: PoolName[];
+};
+
+export type FetchDepositEventsResponse = DepositEventNode[];
+
+export type FetchWithdrawEventsParams = FetchDepositEventsParams;
+
+export type FetchWithdrawEventsResponse = WithdrawEventNode[];
+
+export type ParseInvestmentsfromDepositEventsParams = {
+  poolNames: PoolName[];
+  owners: string[];
+  events: DepositEventNode[];
+};
+
+export type ParseAlphaRewardsFromDepositEventsParams = {
+  poolNames: PoolName[];
+  owners: string[];
+  events: DepositEventNode[];
+}
+
+export type ParseInvestmentsFromLCEventsParams = {
+  poolNames: PoolName[];
+  owners: string[];
+  events: LiquidityChangeEventNode[];
+};
+
+export type ParseAlphaRewardsFromLCEventsParams = {
+  poolNames: PoolName[];
+  owners: string[];
+  events: LiquidityChangeEventNode[];
+}
+
+export type ParseWithdrawsFromWithdrawEventsParams = {
+  poolNames: PoolName[];
+  owners: string[];
+  events: WithdrawEventNode[];
+}

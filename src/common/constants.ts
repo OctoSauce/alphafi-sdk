@@ -409,6 +409,8 @@ export const conf = {
 
     FEE_ADDRESS:
       "0xee5360c5fa13555cbf355cb5015b865d742040e42ff90c324e11f0c63e504545",
+    
+    ALPHAFI_INCEPTION_TIME: 1719501255854,
 
     // constants for Alpha Protocol
 
@@ -1018,6 +1020,154 @@ export const conf = {
 
     SCA_SUI_POOL_LIQUIDITY_CHANGE_EVENT:
       "0x9bbd650b8442abb082c20f3bc95a9434a8d47b4bef98b0832dab57c1a8ba7123::alphafi_cetus_sui_pool::LiquidityChangeEvent",
+
+    // Deposit Event Types
+
+    ALPHA_POOL_DEPOSIT_EVENT:
+      "0x73754ff4132adde2c28995739e8bb403aeb7219ba92003245529681dbc379c08::alphapool::DepositEvent",
+
+    ALPHA_SUI_POOL_DEPOSIT_EVENT:
+      "0x73754ff4132adde2c28995739e8bb403aeb7219ba92003245529681dbc379c08::alphafi_cetus_sui_pool::DepositEvent",
+
+    USDT_USDC_POOL_DEPOSIT_EVENT:
+      "0x73754ff4132adde2c28995739e8bb403aeb7219ba92003245529681dbc379c08::alphafi_cetus_pool::DepositEvent",
+
+    USDY_USDC_POOL_DEPOSIT_EVENT:
+      "0x73754ff4132adde2c28995739e8bb403aeb7219ba92003245529681dbc379c08::alphafi_cetus_pool::DepositEvent",
+
+    HASUI_SUI_POOL_DEPOSIT_EVENT:
+      "0x73754ff4132adde2c28995739e8bb403aeb7219ba92003245529681dbc379c08::alphafi_cetus_sui_pool::DepositEvent",
+
+    USDC_SUI_POOL_DEPOSIT_EVENT:
+      "0x73754ff4132adde2c28995739e8bb403aeb7219ba92003245529681dbc379c08::alphafi_cetus_sui_pool::DepositEvent",
+
+    USDC_WBTC_POOL_DEPOSIT_EVENT:
+      "0x73754ff4132adde2c28995739e8bb403aeb7219ba92003245529681dbc379c08::alphafi_cetus_pool_base_a::DepositEvent",
+
+    WETH_USDC_POOL_DEPOSIT_EVENT:
+      "0x73754ff4132adde2c28995739e8bb403aeb7219ba92003245529681dbc379c08::alphafi_cetus_pool::DepositEvent",
+
+    NAVX_SUI_POOL_DEPOSIT_EVENT:
+      "0x73754ff4132adde2c28995739e8bb403aeb7219ba92003245529681dbc379c08::alphafi_cetus_sui_pool::DepositEvent",
+
+    BUCK_USDC_POOL_DEPOSIT_EVENT:
+      "0x73754ff4132adde2c28995739e8bb403aeb7219ba92003245529681dbc379c08::alphafi_cetus_pool::DepositEvent",
+
+     // verify and put
+    CETUS_SUI_POOL_DEPOSIT_EVENT:
+      "",
+
+    NAVI_SUI_POOL_DEPOSIT_EVENT:
+      "0x73754ff4132adde2c28995739e8bb403aeb7219ba92003245529681dbc379c08::alphafi_navi_pool::DepositEvent",
+
+    NAVI_VSUI_POOL_DEPOSIT_EVENT:
+      "0x73754ff4132adde2c28995739e8bb403aeb7219ba92003245529681dbc379c08::alphafi_navi_pool::DepositEvent",
+
+    NAVI_WETH_POOL_DEPOSIT_EVENT:
+      "0x73754ff4132adde2c28995739e8bb403aeb7219ba92003245529681dbc379c08::alphafi_navi_pool::DepositEvent",
+
+    NAVI_USDT_POOL_DEPOSIT_EVENT:
+      "0x73754ff4132adde2c28995739e8bb403aeb7219ba92003245529681dbc379c08::alphafi_navi_pool::DepositEvent",
+
+    NAVI_USDC_POOL_DEPOSIT_EVENT:
+      "0x73754ff4132adde2c28995739e8bb403aeb7219ba92003245529681dbc379c08::alphafi_navi_pool::DepositEvent",
+
+    NAVI_HASUI_POOL_DEPOSIT_EVENT:
+      "0x73754ff4132adde2c28995739e8bb403aeb7219ba92003245529681dbc379c08::alphafi_navi_pool::DepositEvent",
+
+    NAVI_LOOP_SUI_VSUI_POOL_DEPOSIT_EVENT:
+      "0x531989a4be74dd43b25e7bb1eeade871f4524bdf437a8eaa30b4ac2a932b5579::alphafi_navi_sui_vsui_pool::DepositEvent",
+
+    NAVI_LOOP_USDT_USDC_POOL_DEPOSIT_EVENT: "",
+
+    ALPHA_USDC_POOL_DEPOSIT_EVENT:
+      "",
+
+    WSOL_USDC_POOL_DEPOSIT_EVENT:
+      "",
+
+    FUD_SUI_POOL_DEPOSIT_EVENT: "",
+
+    BLUB_SUI_POOL_DEPOSIT_EVENT: "",
+
+    SCA_SUI_POOL_DEPOSIT_EVENT:
+      "",
+
+    // last Deposit Event Times
+
+    ALPHA_POOL_LAST_DEPOSIT_EVENT_TIME: 1724074240881,
+
+    // Withdraw Event Types
+
+    ALPHA_POOL_WITHDRAW_EVENT:
+      "0x73754ff4132adde2c28995739e8bb403aeb7219ba92003245529681dbc379c08::alphapool::WithdrawEvent",
+
+    ALPHA_SUI_POOL_WITHDRAW_EVENT:
+      "0x73754ff4132adde2c28995739e8bb403aeb7219ba92003245529681dbc379c08::alphafi_cetus_sui_pool::WithdrawEvent",
+
+    USDT_USDC_POOL_WITHDRAW_EVENT:
+      "0x73754ff4132adde2c28995739e8bb403aeb7219ba92003245529681dbc379c08::alphafi_cetus_pool::WithdrawEvent",
+
+    USDY_USDC_POOL_WITHDRAW_EVENT:
+      "0x73754ff4132adde2c28995739e8bb403aeb7219ba92003245529681dbc379c08::alphafi_cetus_pool::WithdrawEvent",
+
+    HASUI_SUI_POOL_WITHDRAW_EVENT:
+      "0x73754ff4132adde2c28995739e8bb403aeb7219ba92003245529681dbc379c08::alphafi_cetus_sui_pool::WithdrawEvent",
+
+    USDC_SUI_POOL_WITHDRAW_EVENT:
+      "0x73754ff4132adde2c28995739e8bb403aeb7219ba92003245529681dbc379c08::alphafi_cetus_sui_pool::WithdrawEvent",
+
+    USDC_WBTC_POOL_WITHDRAW_EVENT:
+      "0x73754ff4132adde2c28995739e8bb403aeb7219ba92003245529681dbc379c08::alphafi_cetus_pool_base_a::WithdrawEvent",
+
+    WETH_USDC_POOL_WITHDRAW_EVENT:
+      "0x73754ff4132adde2c28995739e8bb403aeb7219ba92003245529681dbc379c08::alphafi_cetus_pool::WithdrawEvent",
+
+    NAVX_SUI_POOL_WITHDRAW_EVENT:
+      "0x73754ff4132adde2c28995739e8bb403aeb7219ba92003245529681dbc379c08::alphafi_cetus_sui_pool::WithdrawEvent",
+
+    BUCK_USDC_POOL_WITHDRAW_EVENT:
+      "0x73754ff4132adde2c28995739e8bb403aeb7219ba92003245529681dbc379c08::alphafi_cetus_pool::WithdrawEvent",
+
+     // verify and put
+    CETUS_SUI_POOL_WITHDRAW_EVENT:
+      "",
+
+    NAVI_SUI_POOL_WITHDRAW_EVENT:
+      "0x73754ff4132adde2c28995739e8bb403aeb7219ba92003245529681dbc379c08::alphafi_navi_pool::WithdrawEvent",
+
+    NAVI_VSUI_POOL_WITHDRAW_EVENT:
+      "0x73754ff4132adde2c28995739e8bb403aeb7219ba92003245529681dbc379c08::alphafi_navi_pool::WithdrawEvent",
+
+    NAVI_WETH_POOL_WITHDRAW_EVENT:
+      "0x73754ff4132adde2c28995739e8bb403aeb7219ba92003245529681dbc379c08::alphafi_navi_pool::WithdrawEvent",
+
+    NAVI_USDT_POOL_WITHDRAW_EVENT:
+      "0x73754ff4132adde2c28995739e8bb403aeb7219ba92003245529681dbc379c08::alphafi_navi_pool::WithdrawEvent",
+
+    NAVI_USDC_POOL_WITHDRAW_EVENT:
+      "0x73754ff4132adde2c28995739e8bb403aeb7219ba92003245529681dbc379c08::alphafi_navi_pool::WithdrawEvent",
+
+    NAVI_HASUI_POOL_WITHDRAW_EVENT:
+      "0x73754ff4132adde2c28995739e8bb403aeb7219ba92003245529681dbc379c08::alphafi_navi_pool::WithdrawEvent",
+
+    NAVI_LOOP_SUI_VSUI_POOL_WITHDRAW_EVENT:
+      "0x531989a4be74dd43b25e7bb1eeade871f4524bdf437a8eaa30b4ac2a932b5579::alphafi_navi_sui_vsui_pool::WithdrawEvent",
+
+    NAVI_LOOP_USDT_USDC_POOL_WITHDRAW_EVENT: "",
+
+    ALPHA_USDC_POOL_WITHDRAW_EVENT:
+      "",
+
+    WSOL_USDC_POOL_WITHDRAW_EVENT:
+      "",
+
+    FUD_SUI_POOL_WITHDRAW_EVENT: "",
+
+    BLUB_SUI_POOL_WITHDRAW_EVENT: "",
+
+    SCA_SUI_POOL_WITHDRAW_EVENT:
+      "",
 
     // Wallets
 

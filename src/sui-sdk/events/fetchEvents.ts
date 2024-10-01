@@ -7,12 +7,16 @@ import {
   CetusLiquidityChangeEvent,
   EventNode,
   FetchEventsParams,
+  DepositEvent,
+  WithdrawEvent,
   LiquidityChangeEventNode,
   NaviAutoCompoundingEvent,
   NaviLoopAutoCompoundingEvent,
   NaviLiquidityChangeEvent,
   RebalanceEvent,
   AutoCompoundingEventNode,
+  DepositEventNode,
+  WithdrawEventNode,
 } from "./types";
 import { poolInfo } from "../../common/maps";
 import { conf, CONF_ENV } from "../../common/constants";
@@ -75,7 +79,9 @@ export async function fetchEvents(
         | CetusLiquidityChangeEvent
         | AlphaLiquidityChangeEvent
         | NaviLiquidityChangeEvent
-        | AlphaAutoCompoundingEvent;
+        | AlphaAutoCompoundingEvent
+        | DepositEvent
+        | WithdrawEvent;
 
       let eventNode: EventNode;
 
@@ -86,7 +92,11 @@ export async function fetchEvents(
       ) {
         // Handling CetusAutoCompoundingEvent
         eventNode = {
+          txDigest: suiEvent.id.txDigest,
+          eventSeq: suiEvent.id.eventSeq,
+          txModule: suiEvent.transactionModule,
           type: suiEvent.type,
+          sender: suiEvent.sender,
           timestamp: Number(suiEvent.timestampMs),
           compound_amount_a: BigInt(suiEventJson.compound_amount_a.toString()),
           compound_amount_b: BigInt(suiEventJson.compound_amount_b.toString()),
@@ -105,6 +115,10 @@ export async function fetchEvents(
       ) {
         // Handling NaviAutoCompoundingEvent
         eventNode = {
+          txDigest: suiEvent.id.txDigest,
+          eventSeq: suiEvent.id.eventSeq,
+          txModule: suiEvent.transactionModule,
+          sender: suiEvent.sender,
           type: suiEvent.type,
           timestamp: Number(suiEvent.timestampMs),
           compound_amount: BigInt(suiEventJson.compound_amount.toString()),
@@ -129,6 +143,10 @@ export async function fetchEvents(
         "amount" in suiEventJson
       ) {
         eventNode = {
+          txDigest: suiEvent.id.txDigest,
+          eventSeq: suiEvent.id.eventSeq,
+          txModule: suiEvent.transactionModule,
+          sender: suiEvent.sender,
           type: suiEvent.type,
           timestamp: Number(suiEvent.timestampMs),
           amount: suiEventJson.amount,
@@ -140,6 +158,10 @@ export async function fetchEvents(
       ) {
         // Handling RebalanceEvent
         eventNode = {
+          txDigest: suiEvent.id.txDigest,
+          eventSeq: suiEvent.id.eventSeq,
+          txModule: suiEvent.transactionModule,
+          sender: suiEvent.sender,
           type: suiEvent.type,
           timestamp: Number(suiEvent.timestampMs),
           investor_id: suiEventJson.investor_id.toString(),
@@ -157,6 +179,9 @@ export async function fetchEvents(
       ) {
         // Handling CetusLiquidityChangeEvent
         eventNode = {
+          txDigest: suiEvent.id.txDigest,
+          eventSeq: suiEvent.id.eventSeq,
+          txModule: suiEvent.transactionModule,
           type: suiEvent.type,
           timestamp: Number(suiEvent.timestampMs),
           amount_a: suiEventJson.amount_a,
@@ -179,6 +204,9 @@ export async function fetchEvents(
       ) {
         // Handling NaviLiquidityChangeEvent and AlphaLiquidityChangeEvent
         eventNode = {
+          txDigest: suiEvent.id.txDigest,
+          eventSeq: suiEvent.id.eventSeq,
+          txModule: suiEvent.transactionModule,
           type: suiEvent.type,
           timestamp: Number(suiEvent.timestampMs),
           amount: suiEventJson.amount,
@@ -190,6 +218,36 @@ export async function fetchEvents(
           user_total_x_token_balance: suiEventJson.user_total_x_token_balance,
           x_token_supply: suiEventJson.x_token_supply,
         } as LiquidityChangeEventNode;
+      } else if (
+        isDepositEvent(suiEvent.type) &&
+        "amount_deposited" in suiEventJson
+      ) {
+        // Handling DepositEvent
+        eventNode = {
+          txModule: suiEvent.transactionModule,
+          txDigest: suiEvent.id.txDigest,
+          eventSeq: suiEvent.id.eventSeq,
+          type: suiEvent.type,
+          timestamp: Number(suiEvent.timestampMs),
+          amount_deposited: suiEventJson.amount_deposited,
+          coin_type: suiEventJson.coin_type,
+          sender: suiEventJson.sender,
+        } as DepositEventNode;
+      } else if (
+        isWithdrawEvent(suiEvent.type) &&
+        "amount_to_withdraw" in suiEventJson
+      ) {
+        // Handling WithdrawEvent
+        eventNode = {
+          txModule: suiEvent.transactionModule,
+          txDigest: suiEvent.id.txDigest,
+          eventSeq: suiEvent.id.eventSeq,
+          type: suiEvent.type,
+          timestamp: Number(suiEvent.timestampMs),
+          amount_deposited: suiEventJson.amount_to_withdraw,
+          coin_type: suiEventJson.coin_type,
+          sender: suiEventJson.sender,
+        } as DepositEventNode;
       } else {
         throw new Error("Unknown event type");
       }
@@ -231,5 +289,27 @@ const isLiquidityChangeEvent = (eventType: string) => {
   const eventTypes: string[] = Object.values(poolInfo).map((info) => {
     return info.liquidityChangeEventType;
   });
+  return eventTypes.includes(eventType);
+};
+
+const isDepositEvent = (eventType: string) => {
+  const eventTypes: string[] = Object.values(poolInfo)
+    .filter((info) => {
+      return info.depositEventType ? true : false;
+    })
+    .map((info) => {
+      return info.depositEventType as string;
+    });
+  return eventTypes.includes(eventType);
+};
+
+const isWithdrawEvent = (eventType: string) => {
+  const eventTypes: string[] = Object.values(poolInfo)
+    .filter((info) => {
+      return info.withdrawEventType ? true : false;
+    })
+    .map((info) => {
+      return info.withdrawEventType as string;
+    });
   return eventTypes.includes(eventType);
 };

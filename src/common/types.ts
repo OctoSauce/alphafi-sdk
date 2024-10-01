@@ -31,7 +31,7 @@ export type PoolName =
   | "BLUB-SUI"
   | "SCA-SUI";
 
-export type SingleAssetPoolNames =
+export type SingleAssetPoolName =
   | "ALPHA"
   | "NAVI-SUI"
   | "NAVI-VSUI"
@@ -42,7 +42,7 @@ export type SingleAssetPoolNames =
   | "NAVI-LOOP-SUI-VSUI"
   | "NAVI-LOOP-USDT-USDC";
 
-export type DoubleAssetPoolNames =
+export type DoubleAssetPoolName =
   | "HASUI-SUI"
   | "USDY-USDC"
   | "ALPHA-SUI"
@@ -560,4 +560,25 @@ export type TransactionBlockType = {
   }[];
   timestampMs: string;
   checkpoint: string;
+};
+
+export type SingleTokenAmounts = {
+  tokens: string;
+};
+
+export type DoubleTokenAmounts = {
+  tokensA: string;
+  tokensB: string;
+};
+
+export type SingleAssetPoolAmounts = {
+  [poolName in SingleAssetPoolName]: SingleTokenAmounts;
+}
+
+export type DoubleAssetPoolAmounts = {
+  [poolName in DoubleAssetPoolName]: DoubleTokenAmounts;
+}
+
+export type PoolAmounts = {
+  [poolName in PoolName]: SingleTokenAmounts | DoubleTokenAmounts;
 };

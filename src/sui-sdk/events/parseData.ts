@@ -4,9 +4,9 @@ import {
   AlphaLiquidityChangeEvent,
   LiquidityChangeEventNode,
   CommonEventAttributes,
-  WithdrawEventNode,
   ParseInvestmentsfromDepositEventsParams,
   ParseAlphaRewardsFromDepositEventsParams,
+  ParseWithdrawsFromWithdrawEventsParams,
   ParseInvestmentsFromLCEventsParams,
   ParseAlphaRewardsFromLCEventsParams,
 } from "./types";
@@ -46,15 +46,15 @@ export function parseInvestmentsfromDepositEvents(
       ).ALPHA as SingleTokenAmounts;
       const newInvestment = new Decimal(prevInvestment.tokens)
         .add(investment)
-        .toFixed(5)
         .toString();
       (usersInvestmentsInPools[owner] as SingleAssetPoolAmounts).ALPHA = {
         tokens: newInvestment,
       } as SingleTokenAmounts;
     } else {
-      usersInvestmentsInPools[owner] = {
-        ALPHA: { tokens: investment.toFixed(5).toString() },
-      } as SingleAssetPoolAmounts;
+      // This might fail
+      usersInvestmentsInPools[owner]["ALPHA"] = {
+        tokens: investment.toString(),
+      };
     }
   }
 
@@ -70,11 +70,7 @@ export function parseInvestmentsfromDepositEvents(
 }
 
 export function parseWithdrawsFromWithdrawEvents(
-  params: {
-    poolNames: PoolName[];
-    owners: string[];
-    events: WithdrawEventNode[];
-  } /*ParseWithdrawsFromWithdrawEventsParams*/,
+  params: ParseWithdrawsFromWithdrawEventsParams
 ): UsersWithdrawsFromPools {
   let usersWithdrawsFromPools: UsersWithdrawsFromPools = {};
 
@@ -101,9 +97,10 @@ export function parseWithdrawsFromWithdrawEvents(
         tokens: newWithdraws,
       } as SingleTokenAmounts;
     } else {
-      usersWithdrawsFromPools[owner] = {
-        ALPHA: { tokens: withdraw.toString() },
-      } as SingleAssetPoolAmounts;
+      usersWithdrawsFromPools[owner]["ALPHA"] = { tokens: withdraw.toString() };
+      // usersWithdrawsFromPools[owner] = {
+      //   ALPHA: { tokens: withdraw.toString() },
+      // } as SingleAssetPoolAmounts;
     }
   }
 
@@ -229,9 +226,12 @@ export function parseInvestmentsFromLCEvents(
           tokens: newInvestment,
         } as SingleTokenAmounts;
       } else {
-        usersInvestmentsInPools[owner] = {
-          ALPHA: { tokens: investment.toFixed(5).toString() },
-        } as SingleAssetPoolAmounts;
+        usersInvestmentsInPools[owner]["ALPHA"] = {
+          tokens: investment.toFixed(5).toString(),
+        };
+        // usersInvestmentsInPools[owner] = {
+        //   ALPHA: { tokens: investment.toFixed(5).toString() },
+        // } as SingleAssetPoolAmounts;
       }
     } else if (isCetusLCEventNode(node)) {
       // TODO add investment functionality for cetus pools
@@ -330,9 +330,7 @@ export function parseWithdrawsFromLCEvents(params: {
           tokens: newWithdraw,
         } as SingleTokenAmounts;
       } else {
-        usersWithdrawsFromPools[owner] = {
-          ALPHA: { tokens: withdraw.toFixed(5).toString() },
-        } as SingleAssetPoolAmounts;
+        usersWithdrawsFromPools[owner]["ALPHA"] = { tokens: withdraw.toFixed(5).toString() }
       }
     } else if (isCetusLCEventNode(node)) {
       // TODO add investment functionality for cetus pools

@@ -5,12 +5,12 @@ import {
   CetusPoolType,
   CoinName,
   CoinType,
-  DoubleAssetPoolNames,
+  DoubleAssetPoolName,
   ParentProtocolName,
   PoolName,
   PoolReceipt,
   PoolType,
-  SingleAssetPoolNames,
+  SingleAssetPoolName,
 } from "./types";
 import { PythPriceIdPair } from "./pyth";
 import { getLatestPrice } from "../utils/prices";
@@ -79,7 +79,7 @@ export const receiptNameMap: { [key in string]: string } = {
 };
 
 export const poolCoinPairMap: Record<
-  DoubleAssetPoolNames,
+  DoubleAssetPoolName,
   { coinA: CoinName; coinB: CoinName }
 > = {
   "USDT-USDC": { coinA: "USDT", coinB: "USDC" },
@@ -99,7 +99,7 @@ export const poolCoinPairMap: Record<
   "SCA-SUI": { coinA: "SCA", coinB: "SUI" },
 };
 
-export const poolCoinMap: Record<SingleAssetPoolNames, CoinName> = {
+export const poolCoinMap: Record<SingleAssetPoolName, CoinName> = {
   ALPHA: "ALPHA",
   "NAVI-VSUI": "VSUI",
   "NAVI-SUI": "SUI",
@@ -122,6 +122,8 @@ export const poolInfo: {
     autoCompoundingEventType: string;
     rebalanceEventType: string | undefined;
     liquidityChangeEventType: string;
+    depositEventType?: string;
+    withdrawEventType?: string;
   };
 } = {
   "NAVI-LOOP-USDT-USDC": {
@@ -238,6 +240,8 @@ export const poolInfo: {
     autoCompoundingEventType: conf[CONF_ENV].ALPHA_POOL_AUTO_COMPOUNDING_EVENT,
     rebalanceEventType: undefined,
     liquidityChangeEventType: conf[CONF_ENV].ALPHA_POOL_LIQUIDITY_CHANGE_EVENT,
+    depositEventType: conf[CONF_ENV].ALPHA_POOL_DEPOSIT_EVENT,
+    withdrawEventType: conf[CONF_ENV].ALPHA_POOL_WITHDRAW_EVENT,
   },
   "ALPHA-SUI": {
     parentProtocolName: "CETUS",

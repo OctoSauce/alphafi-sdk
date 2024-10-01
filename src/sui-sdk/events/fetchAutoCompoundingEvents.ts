@@ -1,6 +1,6 @@
 import { coins } from "../../common/coins";
 import { getInvestorPoolMap, poolCoinMap, poolInfo } from "../../common/maps";
-import { PoolName, SingleAssetPoolNames } from "../../common/types";
+import { PoolName, SingleAssetPoolName } from "../../common/types";
 import { fetchEvents } from "./fetchEvents";
 import {
   AutoCompoundingEventNode,
@@ -170,7 +170,7 @@ export async function calculateAprForInvestor(
         : compoundAmount / totalAmount;
       const poolName = investorPoolMap.get(
         event.investor_id,
-      ) as SingleAssetPoolNames;
+      ) as SingleAssetPoolName;
       const coinName = poolCoinMap[poolName];
 
       growthRate = growthRate * Math.pow(10, 9 - coins[coinName].expo);
