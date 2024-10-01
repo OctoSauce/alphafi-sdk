@@ -4,7 +4,7 @@ import {
   UsersWithdrawsFromAlphaPools,
   UsersInvestmentsInAlphaPools,
 } from "./types";
-import { conf, CONF_ENV} from "../../common/constants";
+import { conf, CONF_ENV } from "../../common/constants";
 import { fetchDepositEvents } from "../../sui-sdk/events/fetchDepositEvents";
 import { fetchWithdrawEvents } from "../../sui-sdk/events/fetchWithdrawEvents";
 import { fetchLiquidityChangeEvents } from "../../sui-sdk/events/fetchLiquidityChangeEvents";
@@ -15,7 +15,7 @@ import {
   parseAlphaRewardsFromLCEvents,
   parseWithdrawsFromLCEvents,
   parseWithdrawsFromWithdrawEvents,
-} from "../../sui-sdk/events/parseData"
+} from "../../sui-sdk/events/parseData";
 import {
   mergeInvestments,
   mergeCollectedRewards,
@@ -28,7 +28,8 @@ export async function fetchAlphaDepositsAndWithdraws(
   params: FetchAlphaDepositsAndWithdrawsParams,
 ): Promise<FetchAlphaDepositsAndWithdrawlsResponse> {
   const { owners, startTime, endTime, options = {} } = params;
-  const lastAlphaPoolDepositEventTime = conf[CONF_ENV].ALPHA_POOL_LAST_DEPOSIT_EVENT_TIME;
+  const lastAlphaPoolDepositEventTime =
+    conf[CONF_ENV].ALPHA_POOL_LAST_DEPOSIT_EVENT_TIME;
   const response: FetchAlphaDepositsAndWithdrawlsResponse = {};
 
   // Handle case when the entire time range is before the lastAlphaPoolDepositEventTime

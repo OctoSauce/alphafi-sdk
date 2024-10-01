@@ -409,7 +409,7 @@ export const conf = {
 
     FEE_ADDRESS:
       "0xee5360c5fa13555cbf355cb5015b865d742040e42ff90c324e11f0c63e504545",
-    
+
     ALPHAFI_INCEPTION_TIME: 1719501255854,
 
     // constants for Alpha Protocol
@@ -1053,9 +1053,8 @@ export const conf = {
     BUCK_USDC_POOL_DEPOSIT_EVENT:
       "0x73754ff4132adde2c28995739e8bb403aeb7219ba92003245529681dbc379c08::alphafi_cetus_pool::DepositEvent",
 
-     // verify and put
-    CETUS_SUI_POOL_DEPOSIT_EVENT:
-      "",
+    // verify and put
+    CETUS_SUI_POOL_DEPOSIT_EVENT: "",
 
     NAVI_SUI_POOL_DEPOSIT_EVENT:
       "0x73754ff4132adde2c28995739e8bb403aeb7219ba92003245529681dbc379c08::alphafi_navi_pool::DepositEvent",
@@ -1080,18 +1079,15 @@ export const conf = {
 
     NAVI_LOOP_USDT_USDC_POOL_DEPOSIT_EVENT: "",
 
-    ALPHA_USDC_POOL_DEPOSIT_EVENT:
-      "",
+    ALPHA_USDC_POOL_DEPOSIT_EVENT: "",
 
-    WSOL_USDC_POOL_DEPOSIT_EVENT:
-      "",
+    WSOL_USDC_POOL_DEPOSIT_EVENT: "",
 
     FUD_SUI_POOL_DEPOSIT_EVENT: "",
 
     BLUB_SUI_POOL_DEPOSIT_EVENT: "",
 
-    SCA_SUI_POOL_DEPOSIT_EVENT:
-      "",
+    SCA_SUI_POOL_DEPOSIT_EVENT: "",
 
     // last Deposit Event Times
 
@@ -1129,9 +1125,8 @@ export const conf = {
     BUCK_USDC_POOL_WITHDRAW_EVENT:
       "0x73754ff4132adde2c28995739e8bb403aeb7219ba92003245529681dbc379c08::alphafi_cetus_pool::WithdrawEvent",
 
-     // verify and put
-    CETUS_SUI_POOL_WITHDRAW_EVENT:
-      "",
+    // verify and put
+    CETUS_SUI_POOL_WITHDRAW_EVENT: "",
 
     NAVI_SUI_POOL_WITHDRAW_EVENT:
       "0x73754ff4132adde2c28995739e8bb403aeb7219ba92003245529681dbc379c08::alphafi_navi_pool::WithdrawEvent",
@@ -1156,18 +1151,15 @@ export const conf = {
 
     NAVI_LOOP_USDT_USDC_POOL_WITHDRAW_EVENT: "",
 
-    ALPHA_USDC_POOL_WITHDRAW_EVENT:
-      "",
+    ALPHA_USDC_POOL_WITHDRAW_EVENT: "",
 
-    WSOL_USDC_POOL_WITHDRAW_EVENT:
-      "",
+    WSOL_USDC_POOL_WITHDRAW_EVENT: "",
 
     FUD_SUI_POOL_WITHDRAW_EVENT: "",
 
     BLUB_SUI_POOL_WITHDRAW_EVENT: "",
 
-    SCA_SUI_POOL_WITHDRAW_EVENT:
-      "",
+    SCA_SUI_POOL_WITHDRAW_EVENT: "",
 
     // Wallets
 

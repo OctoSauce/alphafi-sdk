@@ -1,7 +1,7 @@
 import {
   getPoolExchangeRate,
   getReceipts,
-} from "./sui-sdk/functions/getReceipts"
+} from "./sui-sdk/functions/getReceipts";
 import {
   // GetPoolEarningsParams,
   // GetPoolEarningsResponse,

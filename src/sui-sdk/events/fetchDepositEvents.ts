@@ -1,8 +1,5 @@
 import { fetchEvents } from "./fetchEvents";
-import {
-  DepositEventNode,
-  FetchDepositEventsParams,
-} from "./types";
+import { DepositEventNode, FetchDepositEventsParams } from "./types";
 import { poolInfo } from "../../common/maps";
 
 // const lastInvestmentAlphaPoolDepositEvent: number = 1724074240881;

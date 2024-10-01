@@ -573,11 +573,11 @@ export type DoubleTokenAmounts = {
 
 export type SingleAssetPoolAmounts = {
   [poolName in SingleAssetPoolName]: SingleTokenAmounts;
-}
+};
 
 export type DoubleAssetPoolAmounts = {
   [poolName in DoubleAssetPoolName]: DoubleTokenAmounts;
-}
+};
 
 export type PoolAmounts = {
   [poolName in PoolName]: SingleTokenAmounts | DoubleTokenAmounts;

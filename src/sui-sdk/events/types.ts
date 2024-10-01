@@ -162,7 +162,7 @@ export type ParseAlphaRewardsFromDepositEventsParams = {
   poolNames: PoolName[];
   owners: string[];
   events: DepositEventNode[];
-}
+};
 
 export type ParseInvestmentsFromLCEventsParams = {
   poolNames: PoolName[];
@@ -174,10 +174,10 @@ export type ParseAlphaRewardsFromLCEventsParams = {
   poolNames: PoolName[];
   owners: string[];
   events: LiquidityChangeEventNode[];
-}
+};
 
 export type ParseWithdrawsFromWithdrawEventsParams = {
   poolNames: PoolName[];
   owners: string[];
   events: WithdrawEventNode[];
-}
+};
