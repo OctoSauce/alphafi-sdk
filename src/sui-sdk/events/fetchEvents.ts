@@ -244,10 +244,10 @@ export async function fetchEvents(
           eventSeq: suiEvent.id.eventSeq,
           type: suiEvent.type,
           timestamp: Number(suiEvent.timestampMs),
-          amount_deposited: suiEventJson.amount_to_withdraw,
+          amount_to_withdraw: suiEventJson.amount_to_withdraw,
           coin_type: suiEventJson.coin_type,
           sender: suiEventJson.sender,
-        } as DepositEventNode;
+        } as WithdrawEventNode;
       } else {
         throw new Error("Unknown event type");
       }
