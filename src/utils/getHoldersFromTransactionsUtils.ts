@@ -12,7 +12,7 @@ import {
 } from "../common/maps";
 import Decimal from "decimal.js";
 import BN from "bn.js";
-import { PoolName, CoinName, DoubleAssetPoolNames } from "../common/types";
+import { PoolName, CoinName, DoubleAssetPoolName } from "../common/types";
 import {
   ClmmPoolUtil,
   TickMath,
@@ -102,8 +102,8 @@ function doubleAssetliquidityToUSD(params: {
       coin_amounts.coinB.toNumber(),
     ];
     const ten = new Decimal(10);
-    const coin1 = poolCoinPairMap[pool as DoubleAssetPoolNames].coinA;
-    const coin2 = poolCoinPairMap[pool as DoubleAssetPoolNames].coinB;
+    const coin1 = poolCoinPairMap[pool as DoubleAssetPoolName].coinA;
+    const coin2 = poolCoinPairMap[pool as DoubleAssetPoolName].coinB;
 
     const amount1 = new Decimal(coinAmounts[0]).div(ten.pow(coins[coin1].expo));
     const amount2 = new Decimal(coinAmounts[1]).div(ten.pow(coins[coin2].expo));
