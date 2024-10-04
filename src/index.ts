@@ -1,4 +1,11 @@
 export {
+  setSuiNodeUrl,
+  setSuiClient,
+  getSuiNodeUrl,
+  getSuiClient,
+} from "./sui-sdk/client";
+
+export {
   getVaults,
   getSingleAssetVaults,
   getDoubleAssetVaults,

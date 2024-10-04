@@ -15,9 +15,7 @@ import {
 import { PythPriceIdPair } from "./pyth";
 import { getLatestPrice } from "../utils/prices";
 import { getSuiClient } from "../sui-sdk/client";
-import Decimal from "decimal.js";
-
-const suiClient = getSuiClient();
+import { Decimal } from "decimal.js";
 
 export const cetusPoolMap: { [key: string]: string } = {
   "USDC-SUI": conf[CONF_ENV].USDC_SUI_CETUS_POOL_ID,
@@ -107,7 +105,7 @@ export const poolCoinMap: Record<SingleAssetPoolName, CoinName> = {
   "NAVI-USDC": "USDC",
   "NAVI-USDT": "USDT",
   "NAVI-HASUI": "HASUI",
-  "NAVI-LOOP-SUI-VSUI": "VSUI",
+  "NAVI-LOOP-SUI-VSUI": "SUI",
   "NAVI-LOOP-USDT-USDC": "USDT",
 };
 
@@ -580,6 +578,7 @@ export async function getPoolExchangeRateMap(): Promise<Map<PoolName, string>> {
   const poolNameToConversionRateMap = new Map<PoolName, string>();
 
   const poolIds = Object.keys(poolIdPoolNameMap);
+  const suiClient = getSuiClient();
   const res = await suiClient.multiGetObjects({
     ids: poolIds,
     options: {
@@ -608,6 +607,7 @@ export async function getCetusSqrtPriceMap(): Promise<Map<PoolName, string>> {
   const poolNameToSqrtPriceMap = new Map<PoolName, string>();
 
   const cetusPools = Object.values(cetusPoolMap);
+  const suiClient = getSuiClient();
   const res = await suiClient.multiGetObjects({
     ids: cetusPools,
     options: {
@@ -637,6 +637,7 @@ export async function getCetusInvestorTicksMap(): Promise<{
 
   const investorPoolMap = await getInvestorPoolMap();
   const investors = Array.from(investorPoolMap.keys());
+  const suiClient = getSuiClient();
   const res = await suiClient.multiGetObjects({
     ids: investors,
     options: {
